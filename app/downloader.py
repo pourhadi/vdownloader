@@ -51,10 +51,10 @@ with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
 
     found = False
-    for file in os.listdir(this_dir):
+    for file in os.listdir('/'):
         # print(file)
         if id in file:
-            shutil.move(os.path.join(this_dir, file), os.path.join('/videos', file))
+            shutil.move(os.path.join('/', file), os.path.join('/videos', file))
             r.set(id + "_file", file)
             r.set(id, "done")
             found = True
