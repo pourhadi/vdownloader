@@ -6,9 +6,9 @@ services:
       - "5000:5000"
     volumes:
       - ./app:/app
-      - ./videos/videos
+      - ./videos:/videos
 
-#    stdin_open: true
-#    tty: true
+    stdin_open: true
+    tty: true
   redis:
     image: "redis:alpine"

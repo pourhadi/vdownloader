@@ -1,6 +1,10 @@
 import youtube_dl
 import sys
 import redis
+import shutil
+import os
+
+this_dir = os.path.dirname(os.path.realpath(__file__))
 
 url = sys.argv[1]
 id = sys.argv[2]
@@ -25,7 +29,8 @@ def my_hook(d):
     # print(d)
     if d['status'] == 'finished':
         print('Done downloading, now converting ...')
-    elif d['status']
+    elif d['status'] == 'error':
+        r.set(id, "error")
     else:
         if d['total_bytes_estimate'] is not None:
             total = d['total_bytes_estimate']
@@ -44,4 +49,16 @@ ydl_opts = {
 }
 with youtube_dl.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
-    r.set(id, "done")
+
+    found = False
+    for file in os.listdir(this_dir):
+        # print(file)
+        if id in file:
+            shutil.move(os.path.join(this_dir, file), os.path.join('/videos', file))
+            r.set(id + "_file", file)
+            r.set(id, "done")
+            found = True
+            break
+
+    if not found:
+        r.set(id, "error")

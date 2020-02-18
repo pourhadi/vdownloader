@@ -30,7 +30,7 @@ def root():
         # subprocess.call(["youtube-dl", "-f", "bestvideo[height<=480]+bestaudio/best[height<=480]", "--recode-video", "mp4", "-o", downloadID, url], cwd=dir)
         # p = Popen(["youtube-dl", "--hls-prefer-ffmpeg", "--http-chunk-size", "1M", "-f", "bestvideo[height<=480]+bestaudio/best[height<=480]", "-o", downloadID, url], cwd=dir)
 
-        p = Popen(["python3", os.path.join(dir, "downloader.py"), url, downloadID])
+        p = Popen(["python3", os.path.join(this_dir, "downloader.py"), url, downloadID])
         # for path in Path(dir).iterdir():
         #
         #     if id in path.name:
@@ -77,28 +77,7 @@ def check():
         status = (cache.get(name)).decode('utf8')
         print(status)
         if 'done' in status:
-            finished_file = None
-            for file in os.listdir(dir):
-                if name in file:
-                    if '.mkv' in file:
-                        finished_file = file
-
-                    if '.mp4' in file:
-                        finished_file = file
-
-                    if '.mov' in file:
-                        finished_file = file
-
-                    if '.' not in file:
-                        finished_file = file
-
-            if finished_file is not None:
-                print("finished_file")
-                # shutil.move(os.path.join(this_dir, finished_file), os.path.join(dir, finished_file))
-                cache.set(name, finished_file)
-                return finished_file
-
-            return status
+            return cache.get(name + "_file").decode('utf8')
         else:
             return status
 

@@ -8,8 +8,10 @@ RUN mkdir /app
 
 RUN mkdir /videos
 
-VOLUME /app
+#COPY ./app/app.py /app
+#COPY app/downloader.py /videos
 
+VOLUME /app
 VOLUME /videos
 
 EXPOSE 5000/tcp
