@@ -32,15 +32,25 @@ def my_hook(d):
     elif d['status'] == 'error':
         r.set(id, "error")
     else:
+        total = None
         try:
             if d['total_bytes_estimate'] is not None:
                 total = d['total_bytes_estimate']
-                downloaded = d['downloaded_bytes']
-                percent = int((downloaded / total) * 100)
-                # print('set: {} - {}'.format(id, percent))
-                r.set(id, str(percent))
         except:
-            print('no bytes key')
+            print('no bytes estimate')
+
+        try:
+            if d['total_bytes'] is not None:
+                total = d['total_bytes']
+
+        except:
+            print('no total bytes')
+
+        if total is not None:
+            downloaded = d['downloaded_bytes']
+            percent = int((downloaded / total) * 100)
+            # print('set: {} - {}'.format(id, percent))
+            r.set(id, str(percent))
 
 
 
