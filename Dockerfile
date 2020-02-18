@@ -12,6 +12,6 @@ VOLUME /app
 
 EXPOSE 5000/tcp
 
-#ENTRYPOINT ["python", "/app/app.py"]
+ENTRYPOINT ["python", "/app/app.py"]
 
-ENTRYPOINT ["/bin/bash"]
+#ENTRYPOINT ["/bin/bash"]
