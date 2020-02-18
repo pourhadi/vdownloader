@@ -25,6 +25,7 @@ def my_hook(d):
     # print(d)
     if d['status'] == 'finished':
         print('Done downloading, now converting ...')
+    elif d['status']
     else:
         if d['total_bytes_estimate'] is not None:
             total = d['total_bytes_estimate']

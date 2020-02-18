@@ -15,8 +15,8 @@ app.use_x_sendfile = True
 
 this_dir = os.path.dirname(os.path.realpath(__file__))
 
-# dir = '/videos'
-dir = this_dir
+dir = '/videos'
+# dir = this_dir
 
 cache = redis.Redis(host='redis', port=6379)
 
@@ -30,7 +30,7 @@ def root():
         # subprocess.call(["youtube-dl", "-f", "bestvideo[height<=480]+bestaudio/best[height<=480]", "--recode-video", "mp4", "-o", downloadID, url], cwd=dir)
         # p = Popen(["youtube-dl", "--hls-prefer-ffmpeg", "--http-chunk-size", "1M", "-f", "bestvideo[height<=480]+bestaudio/best[height<=480]", "-o", downloadID, url], cwd=dir)
 
-        p = Popen(["python3", os.path.join(os.path.dirname(os.path.realpath(__file__)), "downloader.py"), url, downloadID])
+        p = Popen(["python3", os.path.join(dir, "downloader.py"), url, downloadID])
         # for path in Path(dir).iterdir():
         #
         #     if id in path.name:

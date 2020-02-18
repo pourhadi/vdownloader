@@ -6,6 +6,7 @@ services:
       - "5000:5000"
     volumes:
       - ./app:/app
+      - ./videos/videos
 
 #    stdin_open: true
 #    tty: true
