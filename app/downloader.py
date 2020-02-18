@@ -39,12 +39,12 @@ def my_hook(d):
         except:
             print('no bytes estimate')
 
-        try:
-            if d['total_bytes'] is not None:
-                total = d['total_bytes']
+            try:
+                if d['total_bytes'] is not None:
+                    total = d['total_bytes']
 
-        except:
-            print('no total bytes')
+            except:
+                print('no total bytes')
 
         if total is not None:
             downloaded = d['downloaded_bytes']
