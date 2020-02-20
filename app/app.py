@@ -150,7 +150,7 @@ if __name__ == "__main__":
         top_resource.putChild(b'files', static.File(dir))
 
         site = Site(top_resource)
-        reactor.listenTCP(5000, site)
+        reactor.listenTCP(80, site)
 
         reactor.run(**reactor_args)
 
