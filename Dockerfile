@@ -14,7 +14,7 @@ RUN mkdir /videos
 VOLUME /app
 VOLUME /videos
 
-EXPOSE 5000/tcp
+EXPOSE 80/tcp
 
 ENTRYPOINT ["python", "/app/app.py"]
 
